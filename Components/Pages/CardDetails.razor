@@ -1,0 +1,23 @@
+@page "/carddetails/{MtgId}"
+@rendermode InteractiveServer
+
+@if (card != null)
+{
+    <h1>@card.Name</h1>
+    <img src="@card.OriginalImageUrl" alt="@card.Name" />
+    <div class="card-details">
+        <p>@card.Name</p>
+        <p>@card.Text</p>
+        <p>Cost: @card.ConvertedManaCost</p>
+        <p>Type: @card.Type</p>
+        @if (card.RarityCodeNavigation != null)
+        {
+            <p>Rarity: @card.RarityCodeNavigation.Name</p>
+        }
+    </div>
+
+}
+else
+{
+    <p>Card not found or invalid card ID.</p>
+}

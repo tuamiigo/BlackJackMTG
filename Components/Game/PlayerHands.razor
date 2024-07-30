@@ -1,0 +1,27 @@
+@namespace BlackJackMTG.Components.Game
+@using BlackJackMTG.Interfaces
+
+<div class="player-section">
+    <h2>Your Hands</h2>
+    <div class="playerhands-container">
+        @foreach (var hand in Hands)
+        {
+            <div class="@(hand == CurrentHand ? "active-hand" : "player-hands")">
+                <p>Value: <span>@hand.GetValue()</span></p>
+                <div class="card-container">
+                    @foreach (var card in hand.Cards)
+                    {
+                        <img class="game-card" src="cards/@card.ImageName" alt="@card.ToString()" />
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="action-buttons">
+    <button class="game-btn" @onclick="() => Hit.InvokeAsync(CurrentHand)" disabled="@(!CanPlayCurrentHand)">Hit</button>
+    <button class="game-btn" @onclick="() => Stand.InvokeAsync(CurrentHand)" disabled="@(!CanPlayCurrentHand)">Stand</button>
+    <button class="game-btn" @onclick="() => DoubleDown.InvokeAsync(CurrentHand)" disabled="@(!CanPlayCurrentHand || !CanDoubleDown(CurrentHand))">Double Down</button>
+    <button class="game-btn" @onclick="() => Split.InvokeAsync(CurrentHand)" disabled="@(!CanPlayCurrentHand || !CanSplit(CurrentHand))">Split</button>
+</div>

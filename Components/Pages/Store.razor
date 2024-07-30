@@ -1,0 +1,58 @@
+@page "/store"
+@rendermode InteractiveServer
+
+
+
+<PageTitle>Store</PageTitle>
+
+<header id="collection-hd">
+    <h1>Store</h1>
+</header>
+<nav id="collection-nav">
+    <button class="filter-btn" @onclick="FilterCardsCost">Price</button>
+    <button class="filter-btn" @onclick="FilterCardsType">Type</button>
+</nav>
+<p>Your current balance: @CurrentBalance</p>
+
+<main id="store-main">
+    <section id="store">
+
+        @if (cards != null)
+        {
+            <div class="card-container">
+                @foreach (var card in cards)
+                {
+                    <div class="card">
+                        <img src="@card.OriginalImageUrl" alt="@card.Name" />
+                        <p>@card.Name </p>
+                        <button @onclick="() => ShowPopup(card)">Details</button>
+                    </div>
+                }
+            </div>
+
+            @if (showPopup)
+            {
+                <div id="popup" class="popup">
+                    <div class="popup-content">
+                        @if (selectedCard != null)
+                        {
+                            <h3>@selectedCard.Name</h3>
+                            <h4>Type: @selectedCard.Type</h4>
+                            <p>Cost: @selectedCard.ConvertedManaCost</p>
+                            <p>@selectedCard.Text</p>
+                            <div class="cost">
+                                <button @onclick="() => BuyCard(selectedCard)">Buy Card</button>
+                            </div>
+                        }
+                        <span class="close" @onclick="ClosePopup">&times;</span>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>Loading...</p>
+        }
+    </section>
+</main>
+

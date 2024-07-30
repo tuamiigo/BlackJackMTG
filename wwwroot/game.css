@@ -1,0 +1,243 @@
+h1,
+h2 {
+  color: #333;
+}
+
+.game-btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  margin-top: 10px;
+}
+
+.game-btn:hover {
+  background-color: #45a049;
+}
+
+.game-btn:disabled {
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.game-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.control-label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.bets-container {
+  margin-top: 10px;
+}
+
+.bet-control {
+  margin-bottom: 10px;
+}
+
+.input-bet,
+.game-btn {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.input-hands {
+  padding: 8px;
+  margin-right: 10px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.input-hands:focus {
+  border-color: #4caf50;
+  outline: none;
+}
+
+.game-area,
+.dealer-hand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.game-area {
+  text-align: center;
+  gap: 10px;
+}
+
+.game-over {
+  text-align: center;
+}
+
+.game-title {
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.card-container .game-card {
+  margin: 5px;
+  width: 100px;
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.hand-result {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  background-color: #fff;
+}
+.hand-result ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.hand-result li {
+  margin-bottom: 5px;
+  font-size: 18px;
+  color: #555;
+}
+
+.hand-result h2 {
+  margin-top: 0;
+  color: #4caf50;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.active-hand {
+  border: 1px solid #4caf50;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.playerhands-container {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.dealerhand-container {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.playerhands-container .player-hands {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.playerhands-container p {
+  font-size: 24px;
+}
+
+.playerhands-container p span {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.dealerhand-container p {
+  font-size: 24px;
+}
+
+.dealerhand-container p span {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.total-payout p span {
+  font-weight: bold;
+}
+
+.game-error {
+  color: red;
+  font-weight: bold;
+}
+
+.blackjack-rules-container {
+  background-color: #ffffff;
+  width: 100%;
+  padding: 30px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.blackjack-rules-container h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.blackjack-rules {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+  list-style-type: none;
+  padding: 0;
+}
+
+.blackjack-rules li {
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.rule-number {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: black;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.blackjack-rules li p {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.blackjack-rules li:nth-child(9) {
+  grid-column: span 2;
+}

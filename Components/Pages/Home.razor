@@ -1,0 +1,19 @@
+﻿@page "/"
+@rendermode InteractiveServer
+
+
+<PageTitle>CasinoMTG</PageTitle>
+
+<div class="information">
+
+    <h1>Welcome to CasinoMTG</h1>
+    <div class="welcome">
+        <h2>Your balance is @CurrentBalance</h2>
+        @if (CurrentBalance == 0)
+        {
+            <p>Click the button to add money</p>
+            <button @onclick="AddMoney">Add Money</button>
+        }
+    </div>
+
+</div>

@@ -1,0 +1,26 @@
+@namespace BlackJackMTG.Components.Game
+@using BlackJackMTG.Interfaces
+
+<div class="dealer-section">
+    <h2>Dealer's Hand</h2>
+    <div class="dealerhand-container">
+        <p>Value: <span>@(IsDealerTurn || ShowDealerSecondCard ? Hand.GetValue() : Hand.GetCardValue(0))</span></p>
+        <div class="card-container">
+            <img class="game-card" src="cards/@Hand.Cards[0].ImageName" alt="@Hand.Cards[0].ToString()" />
+            @if (IsDealerTurn || ShowDealerSecondCard)
+            {
+                <img class="game-card" src="cards/@Hand.Cards[1].ImageName" alt="@Hand.Cards[1].ToString()" />
+            }
+            else
+            {
+                <img class="game-card" src="cards/1B.svg" alt="Card back" />
+            }
+            @if(IsDealerTurn) {
+                @foreach (var card in Hand.Cards.Skip(2))
+                {
+                    <img class="game-card" src="cards/@card.ImageName" alt="@card.ToString()" />
+                }
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+@namespace BlackJackMTG.Components.Game
+@using BlackJackMTG.Interfaces
+@using BlackJackMTG.Controllers
+@inject GameController gameController
+
+
+<div class="game-over">
+    @if(!showGameControls) {
+        <div class="summary">
+            <h2>Game Summary</h2>
+            <div class="hand-result">
+                <h2>Dealer's Hand</h2>
+                <ul>
+                    <li>Value: @DealerHand.GetValue()</li>
+                </ul>
+                <div class="card-container">
+                    @foreach (var card in DealerHand.Cards)
+                    {
+                        <img class="game-card" src="cards/@card.ImageName" alt="@card.ToString()" />
+                    }
+                </div>
+            </div>
+            <div class="playerhands-container">
+                @foreach (var hand in PlayerHands)
+                {
+                    <div class="hand-result">
+                        <h2>@hand.Outcome</h2>
+                        <ul>
+                            <li>Value: @hand.GetValue()</li>
+                            <li>Bet: @hand.Bet</li>
+                            <li>Payout: @hand.Payout</li>
+                        </ul>
+                        <div class="card-container">
+                            @foreach (var card in hand.Cards)
+                            {
+                                <img class="game-card" src="cards/@card.ImageName" alt="@card.ToString()" />
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="total-payout">
+                <h2>Total Payout: <span>@PlayerHands.Sum(x => x.Payout)</span></h2>
+            </div>
+        </div>
+        <button class="game-btn" @onclick="ShowGameControls">Play Again</button>
+    }
+    else 
+    {
+        <p class="game-error">@errorMessage</p>
+        <GameControls NumberOfHands="@NumberOfHands" 
+                BetAmounts="@BetAmounts" 
+                StartGame="@StartGame" 
+                HandleBetAmountChange="@HandleBetAmountChange" 
+                OnNumberOfHandsChanged="@OnNumberOfHandsChanged" />
+    }
+</div>

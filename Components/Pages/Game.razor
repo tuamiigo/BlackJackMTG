@@ -1,0 +1,46 @@
+﻿@page "/game"
+@using BlackJackMTG.Controllers
+@using BlackJackMTG.Components.Game
+@inject GameController gameController
+@rendermode InteractiveServer
+@inject IJSRuntime JSRuntime
+@inherits GameBase
+
+<h2 class="game-title">Blackjack</h2>
+<h3>Balance @gameController.CurrentBalance</h3>
+@if (!gameController.IsGameOver())
+{
+    @if (!gameController.GetPlayerHands().Any())
+    {
+        <p class="game-error">@errorMessage</p>
+        <GameControls NumberOfHands="@numberOfHands" BetAmounts="@betAmounts" StartGame="@StartGame"
+                      HandleBetAmountChange="@HandleBetAmountChange" OnNumberOfHandsChanged="@OnNumberOfHandsChanged" />
+    } else {
+    <div class="game-area">
+        <DealerHand Hand="@gameController.GetDealerHand()" IsDealerTurn="@isDealerTurn" ShowDealerSecondCard="@showDealerSecondCard" />
+        <PlayerHands Hands="@gameController.GetPlayerHands()" CurrentHand="@gameController.GetCurrentHand()"
+                     Hit="@Hit" Stand="@Stand" DoubleDown="@DoubleDown" Split="@Split"
+                     CanDoubleDown="@CanDoubleDown" CanSplit="@CanSplit" />
+    </div>
+    }
+}
+else{
+    <GameOver PlayerHands="@gameController.GetPlayerHands()" DealerHand="@gameController.GetDealerHand()"
+              NumberOfHands="@numberOfHands" BetAmounts="@betAmounts" StartGame="@StartGame"
+              HandleBetAmountChange="@HandleBetAmountChange" OnNumberOfHandsChanged="@OnNumberOfHandsChanged" errorMessage="@errorMessage"/>
+}
+
+<button class="game-btn" @onclick="() => showRules = !showRules">
+    @if (showRules)
+    {
+        <span>Hide Rules</span>
+    }
+    else
+    {
+        <span>Show Rules</span>
+    }
+</button>
+
+@if(showRules) {
+    <BlackjackRules />
+}

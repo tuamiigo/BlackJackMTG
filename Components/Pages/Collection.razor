@@ -1,0 +1,58 @@
+@page "/collection"
+@attribute [StreamRendering]
+@rendermode InteractiveServer
+@using System.ComponentModel.DataAnnotations;
+
+<PageTitle>My Collection</PageTitle>
+
+<header id="collection-hd">
+    <h1>My Collection</h1>
+</header>
+<nav id="collection-nav">
+    <button class="filter-btn" @onclick="FilterCardsCost">Price</button>
+    <button class="filter-btn" @onclick="FilterCardsType">Type</button>
+    <EditForm Model="@searchModel" OnValidSubmit="@Search" TModel="BlackJackMTG.Models.SearchModel">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <InputText id="searchTerm" @bind-Value="searchModel.SearchTerm"/>
+        <button type="submit">Search</button>
+    </EditForm>
+
+</nav>
+<main id="collection-main">
+    @if (filteredCardsSearch != null && filteredCardsSearch.Any())
+    {
+        <div class="card-container">
+            @foreach (var card in filteredCardsSearch)
+            {
+                <div class="card">
+                    <img className="card-img" src="@card.OriginalImageUrl" alt="@card.Name" />
+                    <p>@card.Name </p>
+                    <button @onclick="() => ShowPopup(card)">Details</button>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p>No cards found.</p>
+    }
+
+    @if (showPopup)
+    {
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                @if (selectedCard != null)
+                {
+                    <h3>@selectedCard.Name</h3>
+                    <h4>Type: @selectedCard.Type</h4>
+                    <p>Cost: @selectedCard.ConvertedManaCost</p>
+                    <p>@selectedCard.Text</p>
+                    <button @onclick="@(() => MoreDetails(selectedCard.MtgId))">See more details</button>
+                }
+                <span class="close" @onclick="ClosePopup">&times;</span>
+            </div>
+        </div>
+    }
+</main>
+
