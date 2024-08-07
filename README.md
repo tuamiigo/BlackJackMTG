@@ -24,8 +24,8 @@ This project was developed as part of the **.NET Technology Fundamentals** cours
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/tuamiigo/.net.git
-    cd .net
+    git clone https://github.com/tuamiigo/BlackJackMTG.git
+    cd BlackJackMTG
     ```
 
 2. **Build the project:**
