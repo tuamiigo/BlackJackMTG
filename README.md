@@ -42,7 +42,7 @@ This project was developed as part of the **.NET Technology Fundamentals** cours
 
 4. **Access the application:**
 
-    Open your browser and navigate to `https://localhost:5001` to start playing.
+    Open your browser and navigate to `https://localhost:5082` to start playing.
 
 
    
